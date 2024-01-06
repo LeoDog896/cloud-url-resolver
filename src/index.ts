@@ -2,13 +2,13 @@ export type Protocol = "http" | "ws";
 
 const inBrowser = typeof window !== "undefined";
 
-interface TransformationSettings {
+export interface TransformationSettings {
   inBrowser: boolean;
   origin: string;
   protocol: string;
 }
 
-const defaultOptions = Object.freeze<TransformationSettings>({
+export const defaultOptions = Object.freeze<TransformationSettings>({
   inBrowser,
   origin: globalThis.location?.origin,
   protocol: globalThis.location?.protocol,
@@ -19,7 +19,7 @@ const defaultOptions = Object.freeze<TransformationSettings>({
  */
 export function transform(
   port: number,
-  desiredProtocol: Protocol = "http",
+  desiredProtocol: Protocol,
   options: Partial<TransformationSettings> = {},
 ): string {
   const { inBrowser, origin, protocol } = { ...defaultOptions, ...options };

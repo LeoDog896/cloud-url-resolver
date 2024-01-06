@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "dprint fmt"
+    "format": "dprint fmt",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "dprint": "^0.45.0"
+    "dprint": "^0.45.0",
+    "vitest": "^1.1.3"
   }
 }
