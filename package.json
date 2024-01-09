@@ -1,17 +1,33 @@
 {
   "name": "cloud-url-resolver",
   "version": "1.0.0",
-  "description": "",
+  "description": "Allow changing the port and protocol of any common development url",
+  "repository": {
+    "url": "https://github.com/LeoDog896/cloud-url-resolver.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/LeoDog896/cloud-url-resolver#readme",
+  "bugs": {
+    "url": "https://github.com/LeoDog896/cloud-url-resolver/issues",
+    "email": "leodog896@gmail.com"
+  },
   "main": "index.js",
   "scripts": {
     "format": "dprint fmt",
-    "test": "vitest"
+    "test": "vitest",
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "cloud",
+    "url",
+    "resolver",
+    "cloud-ide"
+  ],
+  "author": "LeoDog896 <leodog896@gmail.com> (https://leodog896.com/)",
+  "license": "MIT",
   "devDependencies": {
     "dprint": "^0.45.0",
+    "typescript": "^5.3.3",
     "vitest": "^1.1.3"
   }
 }
