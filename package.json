@@ -11,7 +11,12 @@
     "url": "https://github.com/LeoDog896/cloud-url-resolver/issues",
     "email": "leodog896@gmail.com"
   },
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "format": "dprint fmt",
     "test": "vitest",
