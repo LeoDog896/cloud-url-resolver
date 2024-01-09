@@ -1,5 +1,7 @@
 # cloud-url-resolver
 
+![NPM Version](https://img.shields.io/npm/v/cloud-url-resolver)
+
 easily resolve protocol/port setups on any development platform
 
 ## Supported Platforms
