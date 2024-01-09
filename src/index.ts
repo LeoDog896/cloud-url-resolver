@@ -5,13 +5,11 @@ const inBrowser = typeof window !== "undefined";
 export interface TransformationSettings {
   inBrowser: boolean;
   origin: string;
-  protocol: string;
 }
 
 export const defaultOptions = Object.freeze<TransformationSettings>({
   inBrowser,
   origin: globalThis.location?.origin,
-  protocol: globalThis.location?.protocol,
 });
 
 /**
@@ -22,21 +20,28 @@ export function transform(
   desiredProtocol: Protocol,
   options: Partial<TransformationSettings> = {},
 ): string {
-  const { inBrowser, origin, protocol } = { ...defaultOptions, ...options };
+  const { inBrowser, origin } = { ...defaultOptions, ...options };
+  const protocol = origin?.split("//")[0];
 
   // if the protocol is https, we want to transform the protocol to its secure counterpart
   const resolvedProtocol = protocol === "https:" ? (desiredProtocol === "http" ? "https" : "wss") : desiredProtocol;
 
   if (inBrowser && origin) {
     if (origin.includes("gitpod.io")) {
-      const regex = /^https:\/\/\d{1,}$/;
+      const regex = /^https?:\/\/\d{1,5}/;
       const url = origin.replace(regex, "");
 
       if (!url) throw Error("workspace url not defined");
 
       return `${resolvedProtocol}://${port}${url}`;
     } else if (origin.includes("github.dev")) {
-      // TODO: codespace support
+      const protocolRegex = /^https?:\/\//;
+      const regex = /\d{1,5}\.app\.github\.dev$/;
+      const url = origin.replace(regex, "").replace(protocolRegex, "");
+
+      if (!url) throw Error("workspace url not defined");
+
+      return `${resolvedProtocol}://${url}${port}.app.github.dev`;
     }
   }
 
