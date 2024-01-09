@@ -20,7 +20,9 @@
   "scripts": {
     "format": "dprint fmt",
     "test": "vitest",
-    "build": "tsc"
+    "test:ci": "vitest run",
+    "build": "tsc",
+    "prepublish": "npm run build && npm run format && npm run test:ci"
   },
   "keywords": [
     "cloud",
