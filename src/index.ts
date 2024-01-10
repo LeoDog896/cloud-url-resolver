@@ -27,14 +27,14 @@ export function transform(
   const resolvedProtocol = protocol === "https:" ? (desiredProtocol === "http" ? "https" : "wss") : desiredProtocol;
 
   if (inBrowser && origin) {
-    if (origin.includes("gitpod.io")) {
+    if (origin.endsWith("gitpod.io")) {
       const regex = /^https?:\/\/\d{1,5}/;
       const url = origin.replace(regex, "");
 
       if (!url) throw Error("workspace url not defined");
 
       return `${resolvedProtocol}://${port}${url}`;
-    } else if (origin.includes("github.dev")) {
+    } else if (origin.endsWith("app.github.dev")) {
       const protocolRegex = /^https?:\/\//;
       const regex = /\d{1,5}\.app\.github\.dev$/;
       const url = origin.replace(regex, "").replace(protocolRegex, "");
