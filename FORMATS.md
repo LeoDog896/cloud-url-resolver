@@ -9,3 +9,7 @@
 ## Gitpod
 
 `protocol://port-hyphen-separated-name.region-datacenter(num).gitpod.io`
+
+## Glitch
+
+`protocol://hyphen-separated-name.glitch.me`

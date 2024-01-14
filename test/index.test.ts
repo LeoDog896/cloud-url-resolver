@@ -45,3 +45,11 @@ test("transform github codespaces url with http", () => {
     origin: `https://hyphen-separated-name-${randomPort()}.app.github.dev`,
   })).toBe(`https://hyphen-separated-name-${port}.app.github.dev`);
 });
+
+test("transform glitch url with ws", () => {
+  const port = randomPort();
+  expect(transform(port, "ws", {
+    inBrowser: true,
+    origin: `https://hyphen-separated-name.glitch.me`,
+  })).toBe(`wss://hyphen-separated-name.glitch.me`);
+});
