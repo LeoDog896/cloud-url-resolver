@@ -1,6 +1,6 @@
 # cloud-url-resolver
 
-![NPM Version](https://img.shields.io/npm/v/cloud-url-resolver)
+[![NPM Version](https://img.shields.io/npm/v/cloud-url-resolver)](https://npmjs.com/package/cloud-url-resolver)
 
 easily resolve protocol/port setups on any development platform
 
