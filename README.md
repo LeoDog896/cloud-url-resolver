@@ -8,6 +8,7 @@ easily resolve protocol/port setups on any development platform
 
 - [GitHub Codespaces](https://github.com/features/codespaces)
 - [Gitpod](https://www.gitpod.io/)
+- [Glitch](https://glitch.com/)
 
 If you would like to add support for another platform, please open an issue about it.
 
