@@ -42,6 +42,8 @@ export function transform(
       if (!url) throw Error("workspace url not defined");
 
       return `${resolvedProtocol}://${url}${port}.app.github.dev`;
+    } else if (origin.endsWith("glitch.me")) {  
+      return `${resolvedProtocol}://${new URL(origin).host}:${port}`;
     }
   }
 
