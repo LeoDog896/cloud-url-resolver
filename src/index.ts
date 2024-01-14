@@ -43,7 +43,7 @@ export function transform(
 
       return `${resolvedProtocol}://${url}${port}.app.github.dev`;
     } else if (origin.endsWith("glitch.me")) {  
-      return `${resolvedProtocol}://${new URL(origin).host}:${port}`;
+      return `${resolvedProtocol}://${new URL(origin).host}`;
     }
   }
 
