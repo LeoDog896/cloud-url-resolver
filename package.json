@@ -1,6 +1,6 @@
 {
   "name": "cloud-url-resolver",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Allow changing the port and protocol of any common development url",
   "repository": {
     "url": "https://github.com/LeoDog896/cloud-url-resolver.git",
