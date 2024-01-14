@@ -13,3 +13,7 @@
 ## Glitch
 
 `protocol://hyphen-separated-name.glitch.me`
+
+## CodeSandbox
+
+`protocol://id-port.csb.app`

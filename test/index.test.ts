@@ -53,3 +53,27 @@ test("transform glitch url with ws", () => {
     origin: `https://hyphen-separated-name.glitch.me`,
   })).toBe(`wss://hyphen-separated-name.glitch.me`);
 });
+
+test("transform glitch url with http", () => {
+  const port = randomPort();
+  expect(transform(port, "http", {
+    inBrowser: true,
+    origin: `https://hyphen-separated-name.glitch.me`,
+  })).toBe(`https://hyphen-separated-name.glitch.me`);
+});
+
+test("transform codesandbox url with ws", () => {
+  const port = randomPort();
+  expect(transform(port, "ws", {
+    inBrowser: true,
+    origin: `https://someId-${randomPort()}.csb.app`,
+  })).toBe(`wss://someId-${port}.csb.app`);
+});
+
+test("transform codesandbox url with http", () => {
+  const port = randomPort();
+  expect(transform(port, "http", {
+    inBrowser: true,
+    origin: `https://someId-${randomPort()}.csb.app`,
+  })).toBe(`https://someId-${port}.csb.app`);
+});

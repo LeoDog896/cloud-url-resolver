@@ -12,6 +12,32 @@ export const defaultOptions = Object.freeze<TransformationSettings>({
   origin: globalThis.location?.origin,
 });
 
+const protocolRegex = /^https?:\/\//;
+const workspaceDefinedError = Error("workspace url not defined");
+
+function transformWithEndingPort(
+  port: number,
+  resolvedProtocol: string,
+  origin: string,
+  regex: RegExp,
+  replacer: string,
+): string {
+  const url = origin.replace(regex, "").replace(protocolRegex, "");
+
+  if (!url) throw workspaceDefinedError;
+
+  return `${resolvedProtocol}://${url}${port}.${replacer}`;
+}
+
+function transformWithStartingPort(port: number, resolvedProtocol: string, origin: string): string {
+  const regex = /^https?:\/\/\d{1,5}/;
+  const url = origin.replace(regex, "");
+
+  if (!url) throw workspaceDefinedError;
+
+  return `${resolvedProtocol}://${port}${url}`;
+}
+
 /**
  * Cloud URL transformation function. Designed to run on either SSR or browser.
  */
@@ -28,22 +54,13 @@ export function transform(
 
   if (inBrowser && origin) {
     if (origin.endsWith("gitpod.io")) {
-      const regex = /^https?:\/\/\d{1,5}/;
-      const url = origin.replace(regex, "");
-
-      if (!url) throw Error("workspace url not defined");
-
-      return `${resolvedProtocol}://${port}${url}`;
+      return transformWithStartingPort(port, resolvedProtocol, origin);
     } else if (origin.endsWith("app.github.dev")) {
-      const protocolRegex = /^https?:\/\//;
-      const regex = /\d{1,5}\.app\.github\.dev$/;
-      const url = origin.replace(regex, "").replace(protocolRegex, "");
-
-      if (!url) throw Error("workspace url not defined");
-
-      return `${resolvedProtocol}://${url}${port}.app.github.dev`;
+      return transformWithEndingPort(port, resolvedProtocol, origin, /\d{1,5}\.app\.github\.dev$/, "app.github.dev");
     } else if (origin.endsWith("glitch.me")) {
       return `${resolvedProtocol}://${new URL(origin).host}`;
+    } else if (origin.endsWith("csb.app")) {
+      return transformWithEndingPort(port, resolvedProtocol, origin, /\d{1,5}\.csb\.app$/, "csb.app");
     }
   }
 
