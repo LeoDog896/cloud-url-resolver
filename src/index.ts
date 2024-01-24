@@ -64,5 +64,13 @@ export function transform(
     }
   }
 
-  return `${resolvedProtocol}://localhost:${port}`;
+  let hostname: string;
+  if (!origin) {
+    hostname = "localhost";
+  } else {
+    const url = new URL(origin);
+    hostname = url.hostname;
+  }
+
+  return `${resolvedProtocol}://${hostname}:${port}`;
 }

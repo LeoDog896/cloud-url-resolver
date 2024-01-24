@@ -14,6 +14,22 @@ test("transform base url with ws protocol", () => {
   expect(transform(port, "ws")).toBe(`ws://localhost:${port}`);
 });
 
+test("transform base network url with http protocol", () => {
+  const port = randomPort();
+  expect(transform(port, "http", {
+    inBrowser: true,
+    origin: `http://192.168.1.1:${randomPort()}`,
+  })).toBe(`http://192.168.1.1:${port}`);
+});
+
+test("transform base network url with ws protocol", () => {
+  const port = randomPort();
+  expect(transform(port, "ws", {
+    inBrowser: true,
+    origin: `http://192.168.1.1:${randomPort()}`,
+  })).toBe(`ws://192.168.1.1:${port}`);
+});
+
 test("transform gitpod url with ws", () => {
   const port = randomPort();
   expect(transform(port, "ws", {
