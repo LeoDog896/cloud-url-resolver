@@ -64,5 +64,5 @@ export function transform(
     }
   }
 
-  return `${resolvedProtocol}://localhost:${port}`;
+  return `${resolvedProtocol}://${inBrowser ? window.location.hostname : "localhost"}:${port}`;
 }
