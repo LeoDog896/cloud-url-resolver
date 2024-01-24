@@ -30,6 +30,14 @@ test("transform base network url with ws protocol", () => {
   })).toBe(`ws://192.168.1.1:${port}`);
 });
 
+test("transform rpi network url with https protocol", () => {
+  const port = randomPort();
+  expect(transform(port, "http", {
+    inBrowser: true,
+    origin: `http://raspberrypi:${randomPort()}`,
+  })).toBe(`http://raspberrypi:${port}`);
+});
+
 test("transform gitpod url with ws", () => {
   const port = randomPort();
   expect(transform(port, "ws", {
