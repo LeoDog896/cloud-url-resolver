@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+
+Added network (local IP) support
+
 ## 1.2.0
 
 Added codesandbox.io support
