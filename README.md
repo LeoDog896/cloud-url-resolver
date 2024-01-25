@@ -18,5 +18,12 @@ If you would like to add support for another platform, please open an issue abou
 ```ts
 import { transform } from "cloud-url-resolver";
 
-transform(3000, "http"); // returns "http://localhost:3000" if on localhost; otherwise, returns the transformed for the current platform
+// returns "http://localhost:3000" if on localhost; otherwise, returns the transformed for the current platform
+transform(3000, "http");
+
+// for example, if on Gitpod, returns "wss://4000-hyphen-separated-name.region-datacenter2.gitpod.io"
+transform(4000, "ws");
+
+// or https://raspberrypi:8080 if on a Raspberry Pi with https enabled
+transform(8080, "http");
 ```
