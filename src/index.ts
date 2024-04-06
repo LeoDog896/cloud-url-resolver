@@ -39,7 +39,8 @@ function transformWithStartingPort(port: number, resolvedProtocol: string, origi
 }
 
 /**
- * Cloud URL transformation function. Designed to run on either SSR or browser.
+ * Cloud URL transformation function.
+ * Designed to run on either SSR or browser.
  */
 export function transform(
   port: number,
